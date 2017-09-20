@@ -14,6 +14,10 @@ function displayLocation(position){
 
     var div = document.getElementById("location");
     div.innerHTML = "Your coordinates are: latitude: "+latitude+", longitude: "+longitude;
+
+    var km = computeDistance(position.coords, secretLocation);
+    var distance = document.getElementById("distance");
+    distance.innerHTML = "You're " + km + " from Secret Headquaters.";
 }
 
 function displayError(error){
@@ -38,9 +42,9 @@ function computeDistance(startCoords, destCoords){
         destLatRads = deegreesToRadians(destCoords.latitude),
         destLongRads = deegreesToRadians(destCoords.longitude),
         Radius = 6371,
-        distance = Math.acos(Math.sin(startLatRads)*Math.sin(destLatRads)+
-                Math.cos(startLongRads)*Math.cos(destLongRads)*
-                Math.cos(startLongRads - destLongRads)) * Radius;
+        distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads)+
+                   Math.cos(startLatRads)*Math.cos(destLatRads)*
+                   Math.cos(startLongRads - destLongRads)) * Radius;
 
     return distance;
 }
@@ -55,4 +59,6 @@ var secretLocation = {
     longitude: 18.659609
 };
 
-
+// var km = computeDistance(position.coords, secretLocation);
+// var distance = document.getElementById("distance");
+// distance.innerHTML = "You're " + km + " from Secret Headquaters.";
