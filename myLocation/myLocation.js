@@ -18,6 +18,8 @@ function displayLocation(position){
     var km = computeDistance(position.coords, secretLocation);
     var distance = document.getElementById("distance");
     distance.innerHTML = "You're " + km + " from Secret Headquaters.";
+
+    showMap(position.coords);
 }
 
 function displayError(error){
@@ -59,6 +61,14 @@ var secretLocation = {
     longitude: 18.659609
 };
 
-// var km = computeDistance(position.coords, secretLocation);
-// var distance = document.getElementById("distance");
-// distance.innerHTML = "You're " + km + " from Secret Headquaters.";
+var map;
+function showMap(coords){
+    var googleLatAndLong = new google.maps.LatLng(coords.latitude, coords.longitude);
+    var mapOptions = {
+    zoom: 10,
+    center: googleLatAndLong,
+    mapTypeId: google.maps.mapTypeId.ROADMAP
+    };
+    var div = document.getElementById("map");
+    map = new google.maps.Map(mapDiv, mapOptions);
+}
